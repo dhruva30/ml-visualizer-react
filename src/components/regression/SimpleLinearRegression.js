@@ -3,8 +3,8 @@ import Table from '../Table';
 import axios from 'axios';
 import '../../css/Homepage.css'
 import Spinner from 'react-spinner-material';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { dracula } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import Codeblock from '../Codeblock';
+import ImageCard from '../ImageCard';
 export class SimpleLinearRegression extends Component {
 
     constructor(props) {
@@ -114,14 +114,15 @@ export class SimpleLinearRegression extends Component {
                             <h5 className="card-title" style={{ textAlign: 'center' }}>
                                 Training Data
                             </h5>
+                            <a className="btn btn-success" href={"https://raw.githubusercontent.com/dhruva30/ml-visualiser-assets/main/Salary_Data.csv"} role={'button'}>Download</a>
                             <div style={{
                                 position: 'absolute', left: '50%', top: '50%',
                                 transform: 'translate(-50%, -50%)'
                             }}>
-                                <Spinner radius={30} color="#ff6f00" visible={this.state.trainingData.length == 0} />
+                                <Spinner radius={30} color="#ff6f00" visible={this.state.trainingData.length === 0} />
                             </div>
                             {this.state.trainingData.length > 0 &&
-                                <div className="card-body">
+                                <div className="card-body card-body-text">
                                     <h6>We have years of Experience versus the salary you get for that many years of experience. Lets train the model on this
                                     data and try to predict future salaries
                             </h6>
@@ -133,7 +134,7 @@ export class SimpleLinearRegression extends Component {
                     <div className="col-md-4">
                         <div className="card" style={{ textAlign: 'center' }}>
                             <h6 className="card-title">Train the model</h6>
-                            <div className="card-body">
+                            <div className="card-body card-body-text">
                                 Upon clicking on this button, the Simple Linear Regression model will be trained with the training data
                                 <br></br>
                                 <button className="btn btn-primary" onClick={this.train}>Train</button>
@@ -146,22 +147,20 @@ export class SimpleLinearRegression extends Component {
                             </div>
                         </div>
                         <br></br>
-                        {this.state.trainingDone && <div className="card" style={{ textAlign: 'center' }}>
-                            <h5 className="card-title">Training result</h5>
-                            <span className="card-body-text">
-                                As you can see, the Simple Linear Regression model tries to fit a straight line through the given
-                            </span>
-                            <img src={this.state.baseUrl + "/regression/simple/result"} alt="training_result" height="400px" />
-                        </div>
+                        {this.state.trainingDone && <ImageCard 
+                        title="Training Result"
+                        description="As you can see the model tries to fit a straight line through the given data"
+                        imageUrl = {this.state.baseUrl+"/regression/simple/result"}
+                        /> 
                         }
                     </div>
                     {this.state.trainingDone && <div className="col-md-4">
                         <div className="card" style={{ textAlign: 'center' }}>
                             <h6 className="card-title">Predicting New Salaries</h6>
                             <div className="card-body">
-                                <div class="form-group">
+                                <div className="form-group">
                                     <label for="year">Enter a Year of Experience</label>
-                                    <input type="number" step="0.01" class="form-control" id="year" placeholder="Enter a year" value={this.state.yearToPredict} onChange={this.yearToPredictHandler} />
+                                    <input type="number" step="0.01" className="form-control" id="year" placeholder="Enter a year" value={this.state.yearToPredict} onChange={this.yearToPredictHandler} />
                                     <br></br>
                                     <button className="btn btn-primary" onClick={this.predict}>Predict</button>
                                 </div>
@@ -176,12 +175,7 @@ export class SimpleLinearRegression extends Component {
                             {this.state.predictedSalary > 0 && <h6 style={{ textAlign: 'center' }}>Predicted Salary: {this.state.predictedSalary}</h6>}
                         </div>
                         <br></br>
-                        <div className="card">
-                            <h6 className="card-title" style={{textAlign:'center'}}>Code</h6>
-                            <SyntaxHighlighter language="python" style={dracula}>
-                              {this.state.code}
-                            </SyntaxHighlighter>
-                            </div>
+                       <Codeblock language="python" code={this.state.code} />
                     </div>
                     }
                 </div>

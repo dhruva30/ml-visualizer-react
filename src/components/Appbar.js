@@ -17,9 +17,9 @@ const Appbar = () => {
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             <HashRouter>
             <Link to="/simple-linear-regression" className="dropdown-item">Simple Linear Regression</Link>
-            <Link to="/simple-linear-regression" className="dropdown-item">Multiple Linear Regression</Link>
-            <Link to="/simple-linear-regression" className="dropdown-item">Polynomial Regression</Link>
-            <Link to="/simple-linear-regression" className="dropdown-item">Support Vector Regression</Link>
+            <Link to="/multiple-linear-regression" className="dropdown-item">Multiple Linear Regression</Link>
+            <Link to="/polynomial-regression" className="dropdown-item">Polynomial Regression</Link>
+            <Link to="/support-vector-regression" className="dropdown-item">Support Vector Regression</Link>
             </HashRouter>
           </div>
         </li>

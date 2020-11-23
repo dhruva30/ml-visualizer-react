@@ -1,4 +1,5 @@
 import React from 'react';
+import { HashRouter, Link } from 'react-router-dom';
 import '../css/Homepage.css'
 const HomePage = () => {
     return (
@@ -52,7 +53,7 @@ const HomePage = () => {
             <hr></hr>
             <div className="card">
                 <div className="card-body card-body-text">
-                    Interested in how the app works? Check out the API documentation <a href="https://ml-visualizer-services.herokuapp.com">here</a>
+                    Interested in how the app works? Check out the API documentation <a href={"https://documenter.getpostman.com/view/7414080/TVeqcn2F"} target="_blank">here</a>
                 </div>
             </div>
         </div>
